@@ -37,11 +37,6 @@ public class Main {
 		}
 		
         
-
-        // Course update = new Course();
-        // update.courseCredits("Python", "BH0001");
-
-         
          //   CLASSES TEST
 		//Create a scanner student name
         Scanner studentName = new Scanner(System.in);
@@ -218,7 +213,7 @@ class Course {
 
 }
 
-
+//Create a new abstract class
 abstract class StudentEnrolment implements StudentEnrolManager {
     public String add(Course courseName, Student studentName, Student studentID) {
         String filePath = "C:\\Users\\shinh\\Desktop\\RMIT\\Further Programming\\FurtherProgrammingASM1\\test.csv";
@@ -247,7 +242,7 @@ abstract class StudentEnrolment implements StudentEnrolManager {
     }
 }
 
-
+//Interface for class StudentEnrolment
 interface StudentEnrolManager {
     public String add(Course courseName, Student studentName, Student studentID);
     public String update(Course courseName, Student studentName, Student studentID);
