@@ -7,14 +7,13 @@ import java.text.ParseException;
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
         //CSVReader path define
-		String path = "C:\\Users\\shinh\\Desktop\\RMIT\\Further Programming\\test.csv";
+		String path = "C:\\Users\\shinh\\Desktop\\RMIT\\Further Programming\\FurtherProgrammingASM1\\test.csv";
 
         String line = "";
 
-
+        //CSV File read test
 		try {
 			
 			BufferedReader br = new BufferedReader(new FileReader(path));
@@ -36,6 +35,71 @@ public class Main {
 			e.printStackTrace();
 		}
 		
+        
+
+        // Course update = new Course();
+        // update.courseCredits("Python", "BH0001");
+
+         
+         //   CLASSES TEST
+		//Create a scanner student name
+        Scanner studentName = new Scanner(System.in);
+        System.out.println("Enter the student name: ");
+        String sName = studentName.nextLine();
+
+        //Create a scanner for student ID
+        Scanner studentID = new Scanner(System.in);
+        System.out.println("Enter the student ID: ");
+        String sID = studentID.nextLine();
+
+        //Create a scanner for student birthdate
+        Scanner studentBirthdate = new Scanner(System.in);
+        System.out.println("Enter the student birthdate (DD/MM/YYYY): ");
+        String sDate = studentBirthdate.nextLine();
+
+        Student student = new Student(sName, sID, sDate);
+        
+        //Test for Student input
+        //System.out.println(student);
+
+        //Create a scanner for course name
+        Scanner courseName = new Scanner(System.in);
+        System.out.println("Enter the course name: ");
+        String cName = courseName.nextLine();
+
+        //Create a scanner for course id
+        Scanner courseID = new Scanner(System.in);
+        System.out.println("Enter the course ID: ");
+        String cID = courseID.nextLine();
+
+        //Create a scanner for course number of credits
+        Scanner courseCredits = new Scanner(System.in);
+        System.out.println("Enter the course number of credits: ");
+        String cCredits = courseCredits.nextLine();
+
+        Course course = new Course(cName, cID, cCredits);
+        
+        //Test for Course input
+        //System.out.println(course);
+
+        //Create a scanner for course semester
+        Scanner courseSemester = new Scanner(System.in);
+        System.out.println("Enter the course semester: ");
+        String cSemester = courseSemester.nextLine();
+
+        //Create an array to store student information
+        ArrayList<String> studentList = new ArrayList<String>();
+        studentList.add(sID);
+        studentList.add(sName);
+        studentList.add(sDate);
+        studentList.add(cID);
+        studentList.add(cName);
+        studentList.add(cCredits);
+        studentList.add(cSemester);
+
+        System.out.println(studentList);
+        
+        //CSV file write test
 		try (PrintWriter writer = new PrintWriter(path)) {
             StringBuilder sb = new StringBuilder();
             sb.append("ID");
@@ -55,83 +119,49 @@ public class Main {
 
             writer.write(sb.toString());
 
-        } catch (FileNotFoundException e) {
+
+
+                
+            
+            for (int i = 0; i < studentList.size(); i++)
+            {
+                sb = new StringBuilder();
+                sb.append(studentList.get(i));
+                sb.append(",");
+                sb.append(studentList.get(i + 1));
+                sb.append(",");
+                sb.append(studentList.get(i + 2));
+                sb.append(",");
+                sb.append(studentList.get(i + 3));
+                sb.append(",");
+                sb.append(studentList.get(i + 4));
+                sb.append(",");
+                sb.append(studentList.get(i + 5));
+                sb.append(",");
+                sb.append(studentList.get(i + 6));
+                sb.append("\n");
+
+                writer.write(sb.toString());
+                i += 6;
+            }
+        } catch (Exception e){
             System.out.println(e.getMessage());
         }
 
-        Course update = new Course();
-        update.courseCredits("Python", "BH0001");
-		// //Create a scanner student name
-        // Scanner studentName = new Scanner(System.in);
-        // System.out.println("Enter the student name: ");
-        // String sName = studentName.nextLine();
-
-        // //Create a scanner for student ID
-        // Scanner studentID = new Scanner(System.in);
-        // System.out.println("Enter the student ID: ");
-        // String sID = studentID.nextLine();
-
-        // //Create a scanner for student birthdate
-        // Scanner studentBirthdate = new Scanner(System.in);
-        // System.out.println("Enter the student birthdate (DD/MM/YYYY): ");
-        // String sDate = studentBirthdate.nextLine();
-
-        // Student student = new Student(sName, sID, sDate);
-        
-        // //Test for Student input
-        // //System.out.println(student);
-
-        // //Create a scanner for course name
-        // Scanner courseName = new Scanner(System.in);
-        // System.out.println("Enter the course name: ");
-        // String cName = courseName.nextLine();
-
-        // //Create a scanner for course id
-        // Scanner courseID = new Scanner(System.in);
-        // System.out.println("Enter the course ID: ");
-        // String cID = courseID.nextLine();
-
-        // //Create a scanner for course number of credits
-        // Scanner courseCredits = new Scanner(System.in);
-        // System.out.println("Enter the course number of credits: ");
-        // String cCredits = courseCredits.nextLine();
-
-        // Course course = new Course(cName, cID, cCredits);
-        
-        // //Test for Course input
-        // //System.out.println(course);
-
-        // //Create a scanner for course semester
-        // Scanner courseSemester = new Scanner(System.in);
-        // System.out.println("Enter the course semester: ");
-        // String cSemester = courseSemester.nextLine();
-
-        // //Create an array to store student information
-        // ArrayList<String> studentList = new ArrayList<String>();
-        // studentList.add(sID);
-        // studentList.add(sName);
-        // studentList.add(sDate);
-        // studentList.add(cID);
-        // studentList.add(cName);
-        // studentList.add(cCredits);
-        // studentList.add(cSemester);
-
-        // System.out.println(studentList);
-        
-
 	}
 	
-	// public static void CSVReader(String path) {
-		
-		
-	// }
-
 }
 
 class Student {
 	public String studentName;
     public String studentID;
     public String date;
+
+    public Student(String studentName, String studentID, String date) {
+        this.studentName = studentName;
+        this.studentID = studentID;
+        this.date = date;
+    }
        
 }
 
@@ -140,28 +170,29 @@ class Course {
     public String courseID;
     public String credits;
 
-    String coursePath = "C:\\Users\\shinh\\Desktop\\RMIT\\Further Programming\\Course.csv";
-    public void courseCredits(String courseName, String courseID){
+    public Course(String courseName, String courseID, String credits) {
+        this.courseName = courseName;
+        this.courseID = courseID;
+        this.credits = credits;
+    }
 
-        try (PrintWriter writer = new PrintWriter(coursePath)) {
+}
+
+
+abstract class StudentEnrolment implements StudentEnrolManager {
+    public String add(Course courseName, Student studentName, Student studentID) {
+        String filePath = "C:\\Users\\shinh\\Desktop\\RMIT\\Further Programming\\FurtherProgrammingASM1\\test.csv";
+
+        try (PrintWriter writer = new PrintWriter(filePath)) {
             StringBuilder sb = new StringBuilder();
 
             try {
-                BufferedReader br = new BufferedReader(new FileReader(coursePath));
+                BufferedReader br = new BufferedReader(new FileReader(filePath));
                 String line = "";
 
                 while ((line = br.readLine()) != null) {
                     String[] col = line.split(",");
 
-                    if (col[0].equals(courseID)) {
-                        sb.append(courseID);
-                        sb.append(",");
-                        sb.append(courseName);
-                        sb.append(",");
-                        sb.append("5");
-                        
-                        writer.write(sb.toString());
-                    }
 
                 }
 
@@ -172,12 +203,8 @@ class Course {
             System.out.println(e.getMessage());
         }
 
+        return "Student Enrolment added";
     }
-}
-
-
-abstract class StudentEnrolment implements StudentEnrolManager {
-    
 }
 
 
