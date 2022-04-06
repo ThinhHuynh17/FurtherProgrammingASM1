@@ -9,14 +9,15 @@ public class Main {
 	public static void main(String[] args) {
 
         //CSVReader path define
-		String path = "C:\\Users\\shinh\\Desktop\\RMIT\\Further Programming\\FurtherProgrammingASM1\\test.csv";
+		String studentPath = "C:\\Users\\shinh\\Desktop\\RMIT\\Further Programming\\FurtherProgrammingASM1\\test.csv";
+        String coursePath = "C:\\Users\\shinh\\Desktop\\RMIT\\Further Programming\\FurtherProgrammingASM1\\Course.csv";
 
         String line = "";
 
         //CSV File read test
 		try {
 			
-			BufferedReader br = new BufferedReader(new FileReader(path));
+			BufferedReader br = new BufferedReader(new FileReader(studentPath));
 			
 			while ((line = br.readLine()) != null) {
 				String[] col = line.split(",");
@@ -98,9 +99,20 @@ public class Main {
         studentList.add(cSemester);
 
         System.out.println(studentList);
+
+        //Create an array to store course information
+        ArrayList<String> courseList = new ArrayList<String>();
+        courseList.add(cID);
+        courseList.add(cName);
+        courseList.add(cCredits);
+        courseList.add(cSemester);
+
+        System.out.println(courseList);
+
         
-        //CSV file write test
-		try (PrintWriter writer = new PrintWriter(path)) {
+        
+        //CSV file write test for student
+		try (PrintWriter writer = new PrintWriter(studentPath)) {
             StringBuilder sb = new StringBuilder();
             sb.append("ID");
             sb.append(",");
@@ -146,6 +158,34 @@ public class Main {
             }
         } catch (Exception e){
             System.out.println(e.getMessage());
+        }
+
+        //CSV file write test for course
+        try (PrintWriter writer = new PrintWriter(coursePath)) {
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append("Course ID");
+            sb2.append(",");
+            sb2.append("Course Name");
+            sb2.append(",");
+            sb2.append("Number of Credits");
+            writer.write(sb2.toString());
+  
+            for (int i = 0; i < courseList.size(); i++)
+            {
+                sb2 = new StringBuilder();
+                sb2.append(courseList.get(i));
+                sb2.append(",");
+                sb2.append(courseList.get(i + 1));
+                sb2.append(",");
+                sb2.append(courseList.get(i + 2));
+                sb2.append("\n");
+
+                writer.write(sb2.toString());
+                i += 2;
+            }  
+            
+        } catch (Exception e) {
+            //TODO: handle exception
         }
 
 	}
